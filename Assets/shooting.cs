@@ -8,7 +8,6 @@ public class ShootingController : MonoBehaviour
     public Camera mainCamera;            // Reference to the camera
 
     public GameObject normalPlatformPrefab; // The prefab to spawn when hitting the specified tag
-    public GameObject bouncyPlatformPrefab;
     public GameObject jumpPadPlatformPrefab;
     public GameObject chosenPlatform;
     public PlatformType platformName;
@@ -50,9 +49,6 @@ public class ShootingController : MonoBehaviour
     {
         switch (Name)
         {
-            case PlayerController.PlatformType.Bouncy:
-                chosenPlatform = bouncyPlatformPrefab;
-                break;
             case PlayerController.PlatformType.jumpPad:
                 chosenPlatform = jumpPadPlatformPrefab;
                 break;

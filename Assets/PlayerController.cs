@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float jumpForce = 5f;
+    public float moveSpeed = 8f;
+    public float jumpForce = 9f;
     public Transform groundCheck;
     public LayerMask groundLayer;
 
-    public enum PlatformType { Normal, Bouncy, jumpPad }
+    public enum PlatformType { Normal, jumpPad }
     public PlatformType equippedPlatformType = PlatformType.Normal;
 
     private Rigidbody rb;
@@ -52,11 +52,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Equipped Normal Platform");
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            equippedPlatformType = PlatformType.Bouncy;
-            Debug.Log("Equipped Bouncy Platform");
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             equippedPlatformType = PlatformType.jumpPad;
             Debug.Log("Equipped JumpPad");

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 449855454229954740}
   m_Layer: 0
   m_Name: DefaultBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,8 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed9557d810466e40b6cac786e77b8ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalPlatformPrefab: {fileID: 5397292541150261324, guid: 3d8ce1e2e97b544499f94e222f81afc1, type: 3}
-  bouncyPlatformPrefab: {fileID: 5397292541150261324, guid: 1ed140f45f1c15549a4152f5a1c3b7ee, type: 3}
-  jumpPadPlatformPrefab: {fileID: 5397292541150261324, guid: fdeb488d745e5694ebc344eadbd65f6f, type: 3}
-  Player: {fileID: 3643671849637539895, guid: 988f0e9bcc50aff4cb37155a152e2971, type: 3}
+  spawnPlatform: {fileID: 5397292541150261324, guid: 3d8ce1e2e97b544499f94e222f81afc1, type: 3}
   targetTag: Canvas
+  bounceMultiplier: 1

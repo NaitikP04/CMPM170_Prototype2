@@ -1029,11 +1029,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2996137339244959599, guid: 988f0e9bcc50aff4cb37155a152e2971, type: 3}
       propertyPath: jumpForce
-      value: 20
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2996137339244959599, guid: 988f0e9bcc50aff4cb37155a152e2971, type: 3}
+      propertyPath: moveSpeed
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3643671849637539895, guid: 988f0e9bcc50aff4cb37155a152e2971, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394684727195702442, guid: 988f0e9bcc50aff4cb37155a152e2971, type: 3}
+      propertyPath: m_Drag
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394684727195702442, guid: 988f0e9bcc50aff4cb37155a152e2971, type: 3}
+      propertyPath: m_Mass
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394684727195702442, guid: 988f0e9bcc50aff4cb37155a152e2971, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7394684727195702442, guid: 988f0e9bcc50aff4cb37155a152e2971, type: 3}
       propertyPath: m_Constraints
