@@ -32,8 +32,11 @@ public class ShootingController : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             Vector3 shootDirection = (hit.point - transform.position).normalized;
+            shootDirection.z = 0;
+
             platformName = playerController.equippedPlatformType;
             ChoosePlatform(platformName);
+
             // Instantiate the projectile
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             DefaultBulletScript projectileScript = projectile.GetComponent<DefaultBulletScript>();
