@@ -1,10 +1,19 @@
 using UnityEngine;
+using static PlayerController;
 
 public class ShootingController : MonoBehaviour
 {
     public GameObject projectilePrefab; // The projectile prefab to shoot
     public float projectileSpeed = 10f;  // Speed of the projectile
     public Camera mainCamera;            // Reference to the camera
+
+    public GameObject normalPlatformPrefab; // The prefab to spawn when hitting the specified tag
+    public GameObject bouncyPlatformPrefab;
+    public GameObject jumpPadPlatformPrefab;
+    public GameObject chosenPlatform;
+    public PlatformType platformName;
+
+    public PlayerController playerController;
 
     void Update()
     {
@@ -24,13 +33,32 @@ public class ShootingController : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             Vector3 shootDirection = (hit.point - transform.position).normalized;
-
+            platformName = playerController.equippedPlatformType;
+            ChoosePlatform(platformName);
             // Instantiate the projectile
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            DefaultBulletScript projectileScript = projectile.GetComponent<DefaultBulletScript>();
+            projectileScript.spawnPlatform = chosenPlatform;
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
             // Set the projectile's velocity
             rb.linearVelocity = shootDirection * projectileSpeed;
+        }
+    }
+
+    void ChoosePlatform(PlatformType Name)
+    {
+        switch (Name)
+        {
+            case PlayerController.PlatformType.Bouncy:
+                chosenPlatform = bouncyPlatformPrefab;
+                break;
+            case PlayerController.PlatformType.jumpPad:
+                chosenPlatform = jumpPadPlatformPrefab;
+                break;
+            default:
+                chosenPlatform = normalPlatformPrefab;
+                break;
         }
     }
 }

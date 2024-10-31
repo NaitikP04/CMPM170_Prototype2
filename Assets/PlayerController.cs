@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             equippedPlatformType = PlatformType.jumpPad;
-            Debug.Log("Equipped Sticky Platform");
+            Debug.Log("Equipped JumpPad");
         }
     }
 }

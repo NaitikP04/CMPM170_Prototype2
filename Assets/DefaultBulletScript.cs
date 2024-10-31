@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class DefaultBulletScript : MonoBehaviour
 {
-    public GameObject normalPlatformPrefab; // The prefab to spawn when hitting the specified tag
+    /*public GameObject normalPlatformPrefab; // The prefab to spawn when hitting the specified tag
     public GameObject bouncyPlatformPrefab;
     public GameObject jumpPadPlatformPrefab;
-    public GameObject Player;
+    public GameObject Player;*/
+    public GameObject spawnPlatform;
     public string targetTag; // The tag to check for
 
     void Start()
@@ -15,7 +16,7 @@ public class DefaultBulletScript : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Bullet");
+        //Debug.Log("Bullet");
     }
 
     void OnTriggerEnter(Collider other)
@@ -35,19 +36,19 @@ public class DefaultBulletScript : MonoBehaviour
             }
 
             // Access the equipped platform type from the PlayerController script on the Player
-            PlayerController playerController = Player.GetComponent<PlayerController>();
+            /*PlayerController playerController = Player.GetComponent<PlayerController>();
             if (playerController != null)
             {
                 SpawnPlatform(impactPoint, normal, playerController.equippedPlatformType);
-            }
-
+            }*/
+            SpawnPlatform(impactPoint, normal, spawnPlatform);
             Destroy(gameObject); // Destroy the bullet after it hits
         }
     }
 
-    void SpawnPlatform(Vector3 position, Vector3 normal, PlayerController.PlatformType platformType)
+    void SpawnPlatform(Vector3 position, Vector3 normal, GameObject platformType)
     {
-        GameObject platformPrefab;
+        /*GameObject platformPrefab;
 
         // Select the appropriate prefab based on the equipped platform type
         switch (platformType)
@@ -61,9 +62,11 @@ public class DefaultBulletScript : MonoBehaviour
             default:
                 platformPrefab = normalPlatformPrefab;
                 break;
-        }
+        }*/
 
-        GameObject platform = Instantiate(platformPrefab, position, Quaternion.identity);
+        //GameObject platform = Instantiate(platformPrefab, position, Quaternion.identity);
+        GameObject platform = Instantiate(platformType, position, Quaternion.identity);
+
         platform.transform.up = normal;
     }
 }
