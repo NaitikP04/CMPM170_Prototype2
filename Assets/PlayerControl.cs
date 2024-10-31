@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
 
+    public enum PlatformType { Normal, Bouncy, jumpPad }
+    public PlatformType equippedPlatformType = PlatformType.Normal;
+
     private Rigidbody rb;
     private bool isGrounded;
 
@@ -19,6 +22,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         Jump();
+        ChangePlatformType();
     }
 
     void Move()
@@ -37,6 +41,25 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+    }
+
+    void ChangePlatformType()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            equippedPlatformType = PlatformType.Normal;
+            Debug.Log("Equipped Normal Platform");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            equippedPlatformType = PlatformType.Bouncy;
+            Debug.Log("Equipped Bouncy Platform");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            equippedPlatformType = PlatformType.jumpPad;
+            Debug.Log("Equipped Sticky Platform");
         }
     }
 }

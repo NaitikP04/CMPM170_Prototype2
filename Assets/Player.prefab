@@ -140,6 +140,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  equippedPlatformType: 2
 --- !u!54 &7394684727195702442
 Rigidbody:
   m_ObjectHideFlags: 0
