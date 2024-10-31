@@ -134,8 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b9c59a91b4e5a845a443d05450505d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 75
-  jumpForce: 15
+  moveSpeed: 100
+  jumpForce: 20
   groundCheck: {fileID: 145280391223758142}
   groundLayer:
     serializedVersion: 2
@@ -148,7 +148,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3643671849637539895}
   serializedVersion: 4
-  m_Mass: 10
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
