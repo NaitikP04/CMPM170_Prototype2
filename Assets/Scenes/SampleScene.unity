@@ -270,9 +270,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1218566401}
-  offset: {x: 0, y: 45, z: 70}
+  offset: {x: 0, y: 10, z: 70}
   smoothSpeed: 0.125
-  maxHeight: 10
+  maxHeight: 60
   minHeight: 1
 --- !u!1 &410087039
 GameObject:
