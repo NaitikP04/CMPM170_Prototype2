@@ -5,7 +5,10 @@ public class SceneSwap : MonoBehaviour
 {
     // Reference to the respawn canvas UI
     public GameObject respawnCanvas;
-
+    public void Start()
+    {
+        Time.timeScale = 1;
+    }
     // This method loads a scene based on the scene name
     public void ChangeScene(string sceneName)
     {
@@ -18,6 +21,7 @@ public class SceneSwap : MonoBehaviour
         if (respawnCanvas != null)
         {
             respawnCanvas.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 
@@ -27,6 +31,7 @@ public class SceneSwap : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             ShowRespawnUI();
+            
         }
     }
 }

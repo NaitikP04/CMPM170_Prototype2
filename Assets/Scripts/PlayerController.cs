@@ -46,12 +46,12 @@ public class PlayerController : MonoBehaviour
 
     void ChangePlatformType()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             equippedPlatformType = PlatformType.Normal;
             Debug.Log("Equipped Normal Platform");
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.E))
         {
             equippedPlatformType = PlatformType.jumpPad;
             Debug.Log("Equipped JumpPad");

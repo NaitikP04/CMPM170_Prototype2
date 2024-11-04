@@ -4,7 +4,7 @@ using static PlayerController;
 public class ShootingController : MonoBehaviour
 {
     public GameObject projectilePrefab; // The projectile prefab to shoot
-    public float projectileSpeed = 10f;  // Speed of the projectile
+    public float projectileSpeed = 30f;  // Speed of the projectile
     public Camera mainCamera;            // Reference to the camera
 
     public GameObject normalPlatformPrefab; // The prefab to spawn when hitting the specified tag
@@ -45,6 +45,8 @@ public class ShootingController : MonoBehaviour
 
             // Set the projectile's velocity
             rb.linearVelocity = shootDirection * projectileSpeed;
+
+ 
         }
     }
 
