@@ -758,6 +758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnCanvas: {fileID: 0}
+  creditsPanel: {fileID: 0}
 --- !u!1 &228258747
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,6 +1714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnCanvas: {fileID: 1524749304}
+  creditsPanel: {fileID: 0}
 --- !u!65 &638522393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3713,6 +3715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnCanvas: {fileID: 115635971}
+  creditsPanel: {fileID: 0}
 --- !u!1 &2011840858
 GameObject:
   m_ObjectHideFlags: 0
