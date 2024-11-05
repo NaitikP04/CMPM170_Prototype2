@@ -1,10 +1,11 @@
-using UnityEngine;
+using UnityEngine;  
 using UnityEngine.SceneManagement;
 
 public class SceneSwap : MonoBehaviour
 {
     // Reference to the respawn canvas UI
     public GameObject respawnCanvas;
+    public GameObject creditsPanel;
     public void Start()
     {
         Time.timeScale = 1;
@@ -33,5 +34,15 @@ public class SceneSwap : MonoBehaviour
             ShowRespawnUI();
             
         }
+    }
+
+    public void ShowCredits()
+    {
+        creditsPanel.SetActive(true);
+    }
+
+    public void HideCredits()
+    {
+        creditsPanel.SetActive(false);
     }
 }

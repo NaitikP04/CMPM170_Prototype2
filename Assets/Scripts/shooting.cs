@@ -3,23 +3,35 @@ using static PlayerController;
 
 public class ShootingController : MonoBehaviour
 {
-    public GameObject projectilePrefab; // The projectile prefab to shoot
-    public float projectileSpeed = 30f;  // Speed of the projectile
-    public Camera mainCamera;            // Reference to the camera
+    public SimpleBulletPool bulletPool; // Reference to the bullet pool
+    public float projectileSpeed = 30f;
+    public Camera mainCamera;
 
-    public GameObject normalPlatformPrefab; // The prefab to spawn when hitting the specified tag
+    public GameObject normalPlatformPrefab;
     public GameObject jumpPadPlatformPrefab;
     public GameObject chosenPlatform;
     public PlatformType platformName;
 
     public PlayerController playerController;
 
+    public int normalPlatformAmmo = 9;
+    public int jumpPadAmmo = 4;
+    
     void Update()
     {
-        // Check for mouse input
-        if (Input.GetMouseButtonDown(0)) // Left mouse button
+        if (Input.GetMouseButtonDown(0))
         {
-            Shoot();
+            platformName = playerController.equippedPlatformType;
+
+            if (HasAmmo(platformName))
+            {
+                Shoot();
+                DeductAmmo(platformName);
+            }
+            else
+            {
+                Debug.Log("Out of ammo for " + platformName);
+            }
         }
     }
 
@@ -28,7 +40,6 @@ public class ShootingController : MonoBehaviour
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        // Perform a raycast to find where the mouse is pointing in the 3D world
         if (Physics.Raycast(ray, out hit))
         {
             Vector3 shootDirection = (hit.point - transform.position).normalized;
@@ -37,16 +48,16 @@ public class ShootingController : MonoBehaviour
             platformName = playerController.equippedPlatformType;
             ChoosePlatform(platformName);
 
-            // Instantiate the projectile
-            GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            // Get a bullet from the pool instead of instantiating
+            GameObject projectile = bulletPool.GetBullet();
+            projectile.transform.position = transform.position;
+            projectile.transform.rotation = Quaternion.identity;
+
             DefaultBulletScript projectileScript = projectile.GetComponent<DefaultBulletScript>();
             projectileScript.spawnPlatform = chosenPlatform;
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
-            // Set the projectile's velocity
             rb.linearVelocity = shootDirection * projectileSpeed;
-
- 
         }
     }
 
@@ -59,6 +70,32 @@ public class ShootingController : MonoBehaviour
                 break;
             default:
                 chosenPlatform = normalPlatformPrefab;
+                break;
+        }
+    }
+
+    bool HasAmmo(PlatformType platformType)
+    {
+        switch (platformType)
+        {
+            case PlatformType.jumpPad:
+                return jumpPadAmmo > 0;
+            case PlatformType.Normal:
+                return normalPlatformAmmo > 0;
+            default:
+                return false;
+        }
+    }
+
+    void DeductAmmo(PlatformType platformType)
+    {
+        switch (platformType)
+        {
+            case PlatformType.jumpPad:
+                jumpPadAmmo--;
+                break;
+            case PlatformType.Normal:
+                normalPlatformAmmo--;
                 break;
         }
     }

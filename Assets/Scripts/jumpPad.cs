@@ -3,6 +3,7 @@ using UnityEngine;
 public class JumpPad : MonoBehaviour
 {
     public float jumpBoost = 10f;
+    public float boostMultiplier = 1.5f; 
 
     void OnCollisionEnter(Collision collision)
     {
@@ -11,59 +12,25 @@ public class JumpPad : MonoBehaviour
             Rigidbody playerRb = collision.rigidbody;
             if (playerRb != null)
             {
-                // Get the player's incoming velocity
-                Vector3 incomingVelocity = playerRb.linearVelocity;
-
-                // Determine the boost direction based on the jump pad's orientation
+                // Determine the boost direction based on player position relative to the jump pad
+                Vector3 directionToPlayer = (collision.transform.position - transform.position).normalized;
+                
+                // Check if the player is above or below the jump pad
                 Vector3 boostDirection = Vector3.zero;
-
-                // Check the orientation of the jump pad
-                Vector3 upDirection = transform.up;
-
-                if (upDirection == Vector3.up)
+                if (Vector3.Dot(directionToPlayer, transform.up) > 0)
                 {
-                    // Jump pad is horizontal; boost upwards
-                    boostDirection = Vector3.up * jumpBoost;
+                    boostDirection = transform.up;
                 }
-                else if (upDirection == Vector3.right)
+                else
                 {
-                    // Jump pad is vertical (facing right); boost left if coming from the left
-                    if (incomingVelocity.x < 0)
-                    {
-                        boostDirection = Vector3.left * jumpBoost;
-                    }
-                    else
-                    {
-                        boostDirection = Vector3.right * jumpBoost;
-                    }
-                }
-                else if (upDirection == Vector3.left)
-                {
-                    // Jump pad is vertical (facing left); boost right if coming from the right
-                    if (incomingVelocity.x > 0)
-                    {
-                        boostDirection = Vector3.right * jumpBoost;
-                    }
-                    else
-                    {
-                        boostDirection = Vector3.left * jumpBoost;
-                    }
-                }
-                else if (upDirection == Vector3.forward || upDirection == Vector3.back)
-                {
-                    // For vertical planes facing forward/backward, boost accordingly
-                    if (incomingVelocity.z < 0)
-                    {
-                        boostDirection = Vector3.back * jumpBoost; // Boost backward
-                    }
-                    else
-                    {
-                        boostDirection = Vector3.forward * jumpBoost; // Boost forward
-                    }
+                    boostDirection = -transform.up;
                 }
 
-                // Apply the force
-                playerRb.AddForce(boostDirection, ForceMode.Impulse);
+                float scaledBoost = playerRb.linearVelocity.magnitude * boostMultiplier;
+                Vector3 finalBoost = boostDirection * Mathf.Max(scaledBoost, jumpBoost);
+
+                playerRb.linearVelocity = Vector3.zero;
+                playerRb.AddForce(finalBoost, ForceMode.Impulse);
             }
         }
     }
